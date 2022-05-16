@@ -1,23 +1,24 @@
 package com.springcore;
 
 import java.io.PrintStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Scanner;
 
 import com.google.gson.Gson;
 
 public class testinggson {
-	public static void main(String args[]) {
+	public static void main(String args[]) throws Exception {
 		Gson j = new Gson();
-		int a[] = new int[] { 1, 6, 9, 4, 5 };
-		Book b = new Book();
-		b.setName("Shiv");
-		b.setPrice(100);
-		//System.out.println(j.toJson(b));
-String output=j.toJson(b);
-
-		 System.out.println(output);
-		b= j.fromJson(output, Book.class);
-System.out.println(b);
-	}
+		URL url=new URL("https://api.openweathermap.org/data/2.5/weather?q=varanasi&appid=4a1f8a61b74546825af1e0be106e797b&units=metric");
+			URLConnection connection=	url.openConnection();
+		Scanner scanner=new Scanner(connection.getInputStream());
+		while (scanner.hasNextLine()) {
+			System.out.println(scanner.nextLine());
+			
+		}
+		
+}
 }
 
 class Book {
